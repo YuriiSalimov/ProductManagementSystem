@@ -43,6 +43,9 @@ public class Product extends Model {
      * Default constructor
      */
     public Product() {
+        this.title = "";
+        this.manufacturer = "";
+        this.description = "";
     }
 
     /**
