@@ -3,6 +3,7 @@ package com.management.product.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import static org.apache.commons.lang3.StringUtils.*;
 
 /**
  * The class implements a set of standard methods for working
@@ -51,8 +52,8 @@ public class Product extends Model {
      * @param cost a cost of the new product
      */
     public Product(String title, int cost) {
-        this.title = title;
-        this.cost = cost;
+        this.setTitle(title);
+        this.setCost(cost);
     }
 
     /**
@@ -64,7 +65,7 @@ public class Product extends Model {
      */
     public Product(String title, String manufacturer, int cost) {
         this(title, cost);
-        this.manufacturer = manufacturer;
+        this.setManufacturer(manufacturer);
     }
 
     /**
@@ -77,7 +78,7 @@ public class Product extends Model {
      */
     public Product(String title, String manufacturer, String description, int cost) {
         this(title, manufacturer, cost);
-        this.description = description;
+        this.setDescription(description);
     }
 
     /**
@@ -131,7 +132,7 @@ public class Product extends Model {
     }
 
     public void setTitle(String title) {
-        this.title = title!=null? title:"";
+        this.title = isNotBlank(title)?title:"";
     }
 
     public String getManufacturer() {
@@ -139,7 +140,7 @@ public class Product extends Model {
     }
 
     public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer!=null? manufacturer:"";
+        this.manufacturer = isNotBlank(manufacturer)? manufacturer:"";
     }
 
     public String getDescription() {
@@ -147,7 +148,7 @@ public class Product extends Model {
     }
 
     public void setDescription(String description) {
-        this.description = description!=null?description:"";
+        this.description = isNotBlank(description)?description:"";
     }
 
     public int getCost() {
