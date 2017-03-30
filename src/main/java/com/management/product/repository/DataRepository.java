@@ -6,6 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 /**
  * Interface provides a set of methods for the operation of entities with a database.
+ *
  * @param <T> Entity type, extends {@link Model}.
  * @author Вадим
  */

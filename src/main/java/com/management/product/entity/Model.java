@@ -6,11 +6,12 @@ import java.io.Serializable;
 /**
  * The abstract superclass class implements a set of standard methods
  * for working with entity
+ *
  * @author Вадим
  */
 
 @MappedSuperclass
-public abstract class Model implements Serializable{
+public abstract class Model implements Serializable {
 
     /**
      * The version number for a class
@@ -34,7 +35,6 @@ public abstract class Model implements Serializable{
      */
     @Override
     public boolean equals(Object object) {
-
         return (object != null) && (super.equals(object) || (getClass() == object.getClass()));
     }
 
@@ -45,19 +45,21 @@ public abstract class Model implements Serializable{
      */
     @Override
     public String toString() {
-        return "Model{id=" + id + "}";
+        return "Model{id=" + this.id + "}";
     }
 
     /**
      * Getter for id of model
+     *
      * @return id of model
      */
     public long getId() {
-        return id;
+        return this.id;
     }
 
     /**
-     *  Setter for id of model
+     * Setter for id of model
+     *
      * @param id The unique identifier for each model.
      */
     public void setId(long id) {
