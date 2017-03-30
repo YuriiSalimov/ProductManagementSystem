@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Abstract class, parent  for all entities
+ * The abstract superclass class implements a set of standard methods
+ * for working with entity
  * @author Вадим
  */
 
@@ -22,23 +23,7 @@ public abstract class Model implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
-
-    /**
-     * Getter for id of model
-     * @return id of model
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     *  Setter for id of model
-     * @param id The unique identifier for each model.
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+    private long id;
 
     /**
      * Indicates whether some other object is "equal to" this one.
@@ -49,23 +34,9 @@ public abstract class Model implements Serializable{
      */
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
 
-        Model model = (Model) object;
-
-        return id == model.id;
-
+        return (object != null) && (super.equals(object) || (getClass() == object.getClass()));
     }
-
-    /**
-     * Abstract method returns a hash code value for the model.
-     *
-     * @return a hash code value for this model.
-     */
-    @Override
-    public abstract int hashCode();
-
 
     /**
      * Returns a string representation of the model.
@@ -76,5 +47,29 @@ public abstract class Model implements Serializable{
     public String toString() {
         return "Model{id=" + id + "}";
     }
+
+    /**
+     * Getter for id of model
+     * @return id of model
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     *  Setter for id of model
+     * @param id The unique identifier for each model.
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * Abstract method returns a hash code value for the model.
+     *
+     * @return a hash code value for this model.
+     */
+    @Override
+    public abstract int hashCode();
 
 }
