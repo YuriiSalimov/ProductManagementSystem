@@ -102,10 +102,10 @@ public class Product extends Model {
         boolean res = super.equals(object);
         if(res) {
             final Product product = (Product) object;
-            res =  (cost == product.cost)&&
-                    (title != null ? title.equals(product.title) : product.title == null)&&
-                    (manufacturer != null ? manufacturer.equals(product.manufacturer) : product.manufacturer == null)&&
-                    (description != null ? description.equals(product.description) : product.description == null);
+            res =  (this.cost == product.cost)&&
+                    (this.title.equals(product.title))&&
+                    (this.manufacturer.equals(product.manufacturer))&&
+                    (this.description.equals(product.description));
         }
         return res;
     }
@@ -117,44 +117,81 @@ public class Product extends Model {
      */
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
+        int result = title.hashCode();
+        result = 31 * result + manufacturer.hashCode();
+        result = 31 * result + description.hashCode();
         result = 31 * result + cost;
         return result;
     }
 
     /**
-     * Getters and setters methods for all fields of product
-     **/
+     * Getter for name of the product
+     * @return a name of the  product
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Setter for name product
+     * Method that sets a name of the new product,
+     * if parameter is null or is whitespace method sets empty string as name of new product
+     * @param title a name of the new product
+     */
     public void setTitle(String title) {
         this.title = isNotBlank(title)?title:"";
     }
 
+    /**
+     * Getter for  manufacturer`s name of the product
+     * @return a manufacturer`s name of the product
+     */
     public String getManufacturer() {
         return manufacturer;
     }
 
+    /**
+     * Setter for manufacturer`s name of the new product
+     * Method that sets a manufacturer`s name of the new product,
+     * if parameter is null or is whitespace method sets empty string as manufacturer`s name of new product
+     * @param manufacturer a manufacturer`s name of the new product
+     */
     public void setManufacturer(String manufacturer) {
         this.manufacturer = isNotBlank(manufacturer)? manufacturer:"";
     }
 
+    /**
+     * Getter for description of product
+     * @return a description of the product
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Setter for description of the new product
+     * Method that sets a description of the new product,
+     * if parameter is null or is whitespace method sets empty string as description of new product
+     * @param description a description of the new product
+     */
     public void setDescription(String description) {
         this.description = isNotBlank(description)?description:"";
     }
 
+    /**
+     * Getter for product`s cost
+     * @return a product`s cost
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     * Setter for cost of the new product
+     * Method that sets a cost of the new product,
+     * if parameter is negative method sets 0 as product`s cost
+     * @param cost a product`s cost
+     */
     public void setCost(int cost) {
         this.cost = cost>0?cost:0;
     }
