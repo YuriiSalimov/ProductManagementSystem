@@ -56,6 +56,7 @@ public class Product extends Model {
      * @param cost  a cost of the new product
      */
     public Product(String title, int cost) {
+        this();
         setTitle(title);
         setCost(cost);
     }
@@ -100,6 +101,12 @@ public class Product extends Model {
                 "} ";
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param object The reference object with which to compare.
+     * @return true if this object is the same as the obj argument
+     */
     @Override
     public boolean equals(Object object) {
         boolean res = super.equals(object);
