@@ -2,6 +2,7 @@ package com.management.product.service;
 
 import com.management.product.entity.Product;
 import com.management.product.repository.ProductRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,10 +38,13 @@ public class ProductServiceImpl extends DataServiceImpl<Product> implements Prod
      *
      * @param title a title of product
      * @return founded product
+     *
+     * @throws IllegalArgumentException in case if product name is NULL or whitespaces
+     * @throws NullPointerException in case if product with entered name is not exist in database
      */
     @Override
     @Transactional(readOnly = true)
-    public Product getByTitle(String title) {
+    public Product getByTitle(String title) throws IllegalArgumentException,NullPointerException {
         if(isNotBlank(title)){
             Product product =  repository.findByTitle(title);
             if(product!=null){
