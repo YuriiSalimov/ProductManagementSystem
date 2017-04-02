@@ -45,7 +45,7 @@ public class User extends Model implements UserDetails {
      * This field has information about locking user's account. If isLocked == false, then account isn't locked,
      * if isLocked == true, then account is locked
      */
-    @Column(name = "isLocked")
+    @Column(name = "locked")
     private boolean isLocked;
 
     /**
