@@ -2,7 +2,6 @@ package com.management.product.service;
 
 import com.management.product.entity.Model;
 import com.management.product.repository.DataRepository;
-import org.springframework.data.domain.Example;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -92,10 +91,7 @@ public abstract class DataServiceImpl<T extends Model> implements DataService<T>
      */
     @Override
     @Transactional(readOnly = true)
-    public T get(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Id is 'null'");
-        }
+    public T get(long id) {
         T foundedModel = repository.findOne(id);
         if (foundedModel == null) {
             throw new NullPointerException("Can't find model with id = " + id);
