@@ -50,7 +50,7 @@ public interface DataService<T extends Model> {
      * @param id a unique identifier of entity
      * @return entity with entered id from database
      */
-    T get(Long id);
+    T get(long id);
 
     /**
      * The method finds all entities from database
