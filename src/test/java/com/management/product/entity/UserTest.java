@@ -4,7 +4,6 @@ import com.management.product.enums.UserRole;
 import org.junit.Test;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
@@ -13,6 +12,7 @@ import static org.junit.Assert.*;
  * Created by Вадим on 01.04.2017.
  */
 public class UserTest {
+
     @Test
     public void toStringTest() throws Exception {
     User testUser = new User("name","pass", UserRole.ADMIN);
@@ -105,9 +105,7 @@ public class UserTest {
         assertEquals(testUser.getUsername(),"");
         testUser.setUsername("newName");
         assertEquals(testUser.getUsername(),"newName");
-
     }
-
 
     @Test
     public void getAndSetPassword() throws Exception {
@@ -121,7 +119,6 @@ public class UserTest {
         assertEquals(testUser.getPassword(),"newPass");
     }
 
-
     @Test
     public void getAndSetRole() throws Exception {
         User testUser = new User();
@@ -132,7 +129,6 @@ public class UserTest {
         assertTrue(testUser.getRole().equals(UserRole.ADMIN));
     }
 
-
     @Test
     public void isLockedAndSetLocked() throws Exception {
         User testUser = new User();
@@ -141,6 +137,4 @@ public class UserTest {
         testUser.setLocked(false);
         assertFalse(testUser.isLocked());
     }
-
-
 }

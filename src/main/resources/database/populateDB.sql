@@ -27,5 +27,5 @@ INSERT INTO users VALUES
   (5, 'Ann', '555', 'USER', FALSE),
   (6, 'Bob', '666', 'USER', FALSE),
   (7, 'Sam', '777', 'USER', FALSE),
-  (8, 'Kate', '888', 'USER', TRUE ),
+  (8, 'Kate', '888', 'USER', TRUE),
   (9, 'Ron', '999', 'USER', TRUE);

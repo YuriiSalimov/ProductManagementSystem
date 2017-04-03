@@ -146,7 +146,8 @@ public class Product extends Model {
     /**
      * Setter for name product
      * Method that sets a name of the new product,
-     * if parameter is null or is whitespace method sets empty string as name of new product
+     * if parameter is null or is whitespace method sets
+     * empty string as name of new product
      *
      * @param title a name of the new product
      */
@@ -166,7 +167,8 @@ public class Product extends Model {
     /**
      * Setter for manufacturer`s name of the new product
      * Method that sets a manufacturer`s name of the new product,
-     * if parameter is null or is whitespace method sets empty string as manufacturer`s name of new product
+     * if parameter is null or is whitespace method sets empty string
+     * as manufacturer`s name of new product
      *
      * @param manufacturer a manufacturer`s name of the new product
      */
@@ -186,7 +188,8 @@ public class Product extends Model {
     /**
      * Setter for description of the new product
      * Method that sets a description of the new product,
-     * if parameter is null or is whitespace method sets empty string as description of new product
+     * if parameter is null or is whitespace method sets
+     * empty string as description of new product
      *
      * @param description a description of the new product
      */

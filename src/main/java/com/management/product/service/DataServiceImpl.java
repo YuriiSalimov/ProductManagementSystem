@@ -15,19 +15,20 @@ import java.util.Collection;
 public abstract class DataServiceImpl<T extends Model> implements DataService<T> {
 
     /**
-     * An instance of class that implements DataRepository interface for working with T entity
+     * An instance of class that implements DataRepository interface
+     * for working with T entity
      */
-    protected DataRepository<T> repository;
+    private DataRepository<T> repository;
 
     /**
      * Constructor
      *
-     * @param repository An instance of class that implements DataRepository interface for working with T entity
+     * @param repository An instance of class that implements DataRepository
+     *                   interface for working with T entity
      */
     public DataServiceImpl(DataRepository<T> repository) {
         this.repository = repository;
     }
-
 
     /**
      * Method for adding a model into database
@@ -65,9 +66,9 @@ public abstract class DataServiceImpl<T extends Model> implements DataService<T>
     @Override
     @Transactional
     public Collection<T> addAll(Collection<T> collection) {
-        Collection<T> addedModels = new ArrayList<T>();
+        Collection<T> addedModels = new ArrayList<>();
         if (collection != null) {
-            collection.forEach(o -> addedModels.add(this.add(o)));
+            collection.forEach(model -> addedModels.add(this.add(model)));
         }
         return addedModels;
     }
@@ -184,5 +185,4 @@ public abstract class DataServiceImpl<T extends Model> implements DataService<T>
         }
         return this.getAll().contains(model);
     }
-
 }

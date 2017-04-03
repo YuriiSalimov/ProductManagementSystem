@@ -51,5 +51,4 @@ public class ModelTest {
         model.setId(1);
         assertEquals(1, model.getId());
     }
-
 }

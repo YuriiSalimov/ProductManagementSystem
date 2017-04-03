@@ -73,5 +73,4 @@ public abstract class Model implements Serializable {
      */
     @Override
     public abstract int hashCode();
-
 }

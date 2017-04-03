@@ -83,7 +83,7 @@ public class User extends Model implements UserDetails {
      *
      * @param username user's name
      * @param password user's password
-     * @param role user's role
+     * @param role     user's role
      */
     public User(String username, String password, UserRole role) {
         this(username, password);
@@ -113,10 +113,13 @@ public class User extends Model implements UserDetails {
      */
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) return false;
+        if (!super.equals(o))
+            return false;
         User user = (User) o;
-        if (!username.equals(user.username)) return false;
-        if (!password.equals(user.password)) return false;
+        if (!username.equals(user.username))
+            return false;
+        if (!password.equals(user.password))
+            return false;
         return role == user.role;
     }
 
@@ -172,7 +175,6 @@ public class User extends Model implements UserDetails {
     public boolean isEnabled() {
         return !isLocked;
     }
-
 
     /**
      * Method for getting collection of user's authorities. An overridden method from UserDetails interface.
@@ -242,7 +244,7 @@ public class User extends Model implements UserDetails {
      * @param role a user's role.
      */
     public void setRole(UserRole role) {
-        this.role = role != null ? role : UserRole.USER;
+        this.role = (role != null) ? role : UserRole.USER;
     }
 
     /**
