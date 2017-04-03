@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 /**
@@ -45,16 +46,14 @@ public class ProductServiceImpl extends DataServiceImpl<Product> implements Prod
     @Override
     @Transactional(readOnly = true)
     public Product getByTitle(String title) throws IllegalArgumentException,NullPointerException {
-        if(isNotBlank(title)){
-            Product product =  repository.findByTitle(title);
-            if(product!=null){
-                return product;
-            } else {
-                throw new NullPointerException("Product with name " + title + " is not exist in database.");
-            }
-        } else{
+        if(isBlank(title)) {
             throw new IllegalArgumentException("Incorrect name of product.");
         }
+            Product product =  repository.findByTitle(title);
+            if(product==null){
+                throw new NullPointerException("Product with name " + title + " is not exist in database.");
+            }
+            return product;
     }
 
     /**
