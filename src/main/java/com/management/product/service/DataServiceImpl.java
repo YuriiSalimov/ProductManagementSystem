@@ -2,7 +2,10 @@ package com.management.product.service;
 
 import com.management.product.entity.Model;
 import com.management.product.repository.DataRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -27,64 +30,163 @@ public abstract class DataServiceImpl<T extends Model> implements DataService<T>
     }
 
 
+    /**
+     * Method for adding a model into database
+     *
+     * @param model a model to add
+     * @return added model
+     */
     @Override
-    public T add(T t) {
-
-        return null;
+    @Transactional
+    public T add(T model) {
+        if (model == null) {
+            throw new IllegalArgumentException("Trying to save 'null'");
+        }
+        return repository.save(model);
     }
 
+    /**
+     * Method for updating a model in database
+     *
+     * @param model a model to update
+     * @return updated model
+     */
     @Override
+    @Transactional
+    public T update(T model) {
+        return this.add(model);
+    }
+
+    /**
+     * Method for adding a collection of models into database
+     *
+     * @param collection a collection of models to add
+     * @return a collection of added models
+     */
+    @Override
+    @Transactional
     public Collection<T> addAll(Collection<T> collection) {
-        return null;
+        Collection<T> addedModels = new ArrayList<T>();
+        if (collection != null) {
+            collection.forEach(o -> addedModels.add(this.add(o)));
+        }
+        return addedModels;
     }
 
-    @Override
-    public T update(T t) {
-        return null;
-    }
-
+    /**
+     * Method for updating a collection of models in database
+     *
+     * @param collection a collection of models to update
+     * @return a collection of updated models
+     */
     @Override
     public Collection<T> updateAll(Collection<T> collection) {
-        return null;
+        return this.addAll(collection);
     }
 
+    /**
+     * Method for founding model id database by id
+     *
+     * @param id a unique identifier of model, that need to be founded
+     * @return founded model
+     */
     @Override
+    @Transactional(readOnly = true)
     public T get(Long id) {
-        return null;
+        if (id == null) {
+            throw new IllegalArgumentException("Id is 'null'");
+        }
+        T foundedModel = repository.findOne(id);
+        if (foundedModel == null) {
+            throw new NullPointerException("Can't find model with id = " + id);
+        }
+        return foundedModel;
     }
 
+    /**
+     * Method for getting all models of a particular type from database
+     *
+     * @return a collection of all models of a particular type from database
+     */
     @Override
+    @Transactional(readOnly = true)
     public Collection<T> getAll() {
-        return null;
+        return repository.findAll();
     }
 
+    /**
+     * Method for removing model from database by id
+     *
+     * @param id a unique identifier of model, that needs to be removed
+     */
     @Override
+    @Transactional
     public void remove(long id) {
-
+        repository.delete(id);
     }
 
+    /**
+     * Method for removing model from database
+     *
+     * @param model a model, that needs to be removed
+     */
     @Override
-    public void remove(T t) {
-
+    @Transactional
+    public void remove(T model) {
+        if (model == null) {
+            throw new IllegalArgumentException("Trying to remove 'null'");
+        }
+        repository.delete(model);
     }
 
+    /**
+     * Method for removing collection of models from database
+     *
+     * @param collection a collection of models, that need to be removed
+     */
     @Override
+    @Transactional
     public void remove(Collection<T> collection) {
-
+        if (collection == null) {
+            throw new IllegalArgumentException("Collection to remove is 'null'");
+        }
+        collection.forEach(this::remove);
     }
 
+    /**
+     * Method for removing all models of a particular type from database
+     */
     @Override
+    @Transactional
     public void removeAll() {
-
+        repository.deleteAll();
     }
 
+    /**
+     * Method checks if model with entered id exists in database, or not
+     *
+     * @param id a unique identifier of model
+     * @return boolean value, 'true' if model with entered id exists in database, or 'false' otherwise
+     */
     @Override
+    @Transactional(readOnly = true)
     public boolean exist(long id) {
-        return false;
+        return repository.exists(id);
     }
 
+    /**
+     * Method for checking existence of model in database
+     *
+     * @param model a model, the existence of which needs to be checked
+     * @return boolean value, 'true' if model exists in database, or 'false' otherwise
+     */
     @Override
-    public boolean exist(T t) {
-        return false;
+    @Transactional(readOnly = true)
+    public boolean exist(T model) {
+        if (model == null) {
+            throw new IllegalArgumentException("Trying to check existing of 'null' model");
+        }
+        return this.getAll().contains(model);
     }
+
 }
