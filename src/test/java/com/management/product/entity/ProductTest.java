@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
  * @author Slava Makhinich
  */
 public class ProductTest extends ModelTest {
+
     @Test
     public void toStringTest() throws Exception {
         Product product =
@@ -47,10 +48,8 @@ public class ProductTest extends ModelTest {
 
     @Test
     public void hashCodeTest() throws Exception {
-        Product product =
-                new Product("testTitle", "testManufactured", "testDescript", 123456789);
-        Product product1 =
-                new Product("testTitle", "testManufactured", "testDescript", 123456789);
+        Product product = new Product("testTitle", "testManufactured", "testDescript", 123456789);
+        Product product1 = new Product("testTitle", "testManufactured", "testDescript", 123456789);
         assertTrue(product.hashCode() == product.hashCode());
         assertTrue(product.hashCode() == product1.hashCode());
         product.setTitle("newTitle");
@@ -101,5 +100,4 @@ public class ProductTest extends ModelTest {
         product.setCost(-89);
         assertEquals(product.getCost(), 0);
     }
-
 }

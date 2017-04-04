@@ -2,17 +2,14 @@ package com.management.product.service;
 
 import com.management.product.entity.User;
 import com.management.product.enums.UserRole;
-import com.management.product.repository.DataRepository;
 import com.management.product.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -34,7 +31,8 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
     /**
      * Constructor
      *
-     * @param repository An instance of class that implements DataRepository interface for working with User
+     * @param repository An instance of class that implements
+     *                   DataRepository interface for working with User
      */
     @Autowired
     public UserServiceImpl(UserRepository repository) {
@@ -47,9 +45,9 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
      *
      * @param username a name of user
      * @return founded user with entered name
-     *
      * @throws IllegalArgumentException in case if user`s name is NULL or whitespaces
-     * @throws NullPointerException in case if user with entered name is not exist in database
+     * @throws NullPointerException     in case if user with entered name
+     *                                  is not exist in database
      */
     @Override
     @Transactional(readOnly = true)
@@ -72,7 +70,7 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
     @Override
     @Transactional
     public void removeByUsername(String username) {
-        if(isNotBlank(username)){
+        if (isNotBlank(username)) {
             repository.deleteByUsername(username);
         }
     }
@@ -82,13 +80,12 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
      *
      * @param userRole a users`s role
      * @return collection of users with entered role
-     *
      * @throws IllegalArgumentException in case entered user`s role is NULL
      */
     @Override
     @Transactional(readOnly = true)
     public Collection<User> getByRole(UserRole userRole) throws IllegalArgumentException {
-        if(userRole == null){
+        if (userRole == null) {
             throw new IllegalArgumentException("Entered user`s role is 'null'.");
         }
         return repository.findAllByRole(userRole);
@@ -148,10 +145,9 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
      * The method load user from database by user`s name
      *
      * @param username a user`s name
-     * @return  user with entered name
-     *
+     * @return user with entered name
      * @throws UsernameNotFoundException in case if user with entered name is not exist in database
-     * @throws IllegalArgumentException in case if user`s name is NULL or whitespaces
+     * @throws IllegalArgumentException  in case if user`s name is NULL or whitespaces
      */
     @Override
     @Transactional(readOnly = true)

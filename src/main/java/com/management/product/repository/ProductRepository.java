@@ -23,5 +23,4 @@ public interface ProductRepository extends DataRepository<Product> {
      * @param title a name of product, which must be removed
      */
     void deleteByTitle(String title);
-
 }

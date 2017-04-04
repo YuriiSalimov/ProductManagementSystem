@@ -8,8 +8,7 @@ import com.management.product.entity.Product;
  * @author Slava
  */
 public interface ProductService extends DataService<Product> {
-
-
+    
     /**
      * The method founds product in database by title
      *

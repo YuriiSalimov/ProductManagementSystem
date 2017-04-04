@@ -100,5 +100,4 @@ public interface DataService<T extends Model> {
      * @return true if entity is exist in the database or false if it is not exist
      */
     boolean exist(T t);
-
 }
