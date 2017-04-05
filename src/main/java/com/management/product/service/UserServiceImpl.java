@@ -152,12 +152,11 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws IllegalArgumentException, UsernameNotFoundException {
-        if (isBlank(username)) {
-            throw new IllegalArgumentException("Incorrect name of product.");
-        }
-        final User user = repository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User with name " + username + " is not exist in database.");
+        User user;
+        try {
+            user = getByUsername(username);
+        } catch (NullPointerException e){
+            throw new UsernameNotFoundException(e.getMessage());
         }
         return user;
     }
