@@ -52,21 +52,21 @@
                     <td>${product.price}</td>
                     <td>${product.description}</td>
                     <td><a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-                           href="<c:url value='/product/${product.id}'/>">Edit</a></td>
+                           href="<c:url value='/product/${product.id}'/>">Details</a></td>
                     <c:if test="${is_admin== true}">
                         <td><a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-                               href="<c:url value='/editItem/${product.id}'/>">Edit</a></td>
+                               href="<c:url value='/admin/product/edit/${product.id}'/>">Edit</a></td>
                     </c:if>
                     <c:if test="${is_admin== true}">
                         <td><a class="btn btn-xs btn-danger active" role="button" style="margin: 5px"
-                               href="<c:url value='/deleteItem/${product.id}'/>">Delete</a></td>
+                               href="<c:url value='/admin/product/delete/${product.id}'/>">Delete</a></td>
                     </c:if>
                 </tr>
             </c:forEach>
         </table>
     </div>
     <c:if test="${is_admin== true}">
-        <a class="btn btn-xs btn-block btn-primary active" role="button" href="/add">Add an Item</a>
+        <a class="btn btn-xs btn-block btn-primary active" role="button" href="/admin/product/new">Add an Item</a>
     </c:if>
 </div>
 </body>
