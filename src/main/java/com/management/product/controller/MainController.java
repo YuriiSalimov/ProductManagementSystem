@@ -21,16 +21,33 @@ import org.springframework.web.servlet.ModelAndView;
 @ComponentScan(basePackages = "com.management.product.service")
 public class MainController {
 
+    /**
+     * An instance of implementation {@link ProductService} interface
+     */
     private ProductService productService;
 
+    /**
+     * An instance of implementation {@link UserService} interface
+     */
     private UserService userService;
 
+    /**
+     * Constructor
+     *
+     * @param productService an instance of implementation {@link ProductService} interface
+     * @param userService an instance of implementation {@link UserService} interface
+     */
     @Autowired
     public MainController(ProductService productService, UserService userService) {
         this.productService = productService;
         this.userService = userService;
     }
 
+    /**
+     * Method defines models and view for index page
+     *
+     * @return model and view of index page
+     */
     @RequestMapping(value = {"", "/", "/index", "home"}, method = RequestMethod.GET)
     public ModelAndView getIndexPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -39,6 +56,7 @@ public class MainController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
+
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getUsersPage() {

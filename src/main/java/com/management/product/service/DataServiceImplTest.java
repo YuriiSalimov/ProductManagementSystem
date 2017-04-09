@@ -1,5 +1,6 @@
-package com.management.product.entity;
+package com.management.product.service;
 
+import com.management.product.entity.Model;
 import com.management.product.service.DataService;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +32,8 @@ public abstract class DataServiceImplTest<T extends Model> {
         T object = getObject();
 
         object = dataService.add(object);
-        assertEquals(object, dataService.get(object.getId()));
-        assertFalse(dataService.get(1L).equals(null));
+        Assert.assertEquals(object, dataService.get(object.getId()));
+        Assert.assertFalse(dataService.get(1L).equals(null));
     }
 
     @Test
@@ -42,8 +43,8 @@ public abstract class DataServiceImplTest<T extends Model> {
         T changedObject = getObject();
         changedObject.setId(idOfUpdatedObject);
         dataService.update(changedObject);
-        assertFalse(objectBeforeUpdate.equals(changedObject));
-        assertEquals(dataService.get(idOfUpdatedObject), changedObject);
+        Assert.assertFalse(objectBeforeUpdate.equals(changedObject));
+        Assert.assertEquals(dataService.get(idOfUpdatedObject), changedObject);
     }
 
     @Test
@@ -52,7 +53,7 @@ public abstract class DataServiceImplTest<T extends Model> {
         collection = dataService.addAll(collection);
 
         for(T object : collection){
-            assertEquals(object, dataService.get(object.getId()));
+            Assert.assertEquals(object, dataService.get(object.getId()));
         }
     }
 
@@ -67,7 +68,7 @@ public abstract class DataServiceImplTest<T extends Model> {
         dataService.updateAll(collection);
 
         for (T object:collection) {
-            assertEquals(object, dataService.get(object.getId()));
+            Assert.assertEquals(object, dataService.get(object.getId()));
         }
     }
 
@@ -76,17 +77,17 @@ public abstract class DataServiceImplTest<T extends Model> {
         Long id = 1L;
         T object = dataService.get(id);
         dataService.remove(id);
-        assertFalse(object.equals(dataService.get(id)));
+        Assert.assertFalse(object.equals(dataService.get(id)));
 
         dataService.add(object);
-        assertEquals(object, dataService.get(id));
+        Assert.assertEquals(object, dataService.get(id));
 
         dataService.remove(object);
-        assertFalse(object.equals(dataService.get(id)));
+        Assert.assertFalse(object.equals(dataService.get(id)));
 
         Collection<T> collection = dataService.getAll();
         dataService.removeAll();
-        assertTrue(dataService.getAll().isEmpty());
+        Assert.assertTrue(dataService.getAll().isEmpty());
 
         dataService.addAll(collection);
     }
@@ -94,13 +95,13 @@ public abstract class DataServiceImplTest<T extends Model> {
     @Test
     public void existTest() throws Exception {
         T object = getObject();
-        assertFalse(dataService.exist(object));
+        Assert.assertFalse(dataService.exist(object));
 
         object = dataService.get(1L);
-        assertTrue(dataService.exist(object));
+        Assert.assertTrue(dataService.exist(object));
 
-        assertFalse(dataService.exist(99999999L));
-        assertTrue(dataService.exist(1L));
+        Assert.assertFalse(dataService.exist(99999999L));
+        Assert.assertTrue(dataService.exist(1L));
     }
 
     protected abstract DataService<T> getService();
