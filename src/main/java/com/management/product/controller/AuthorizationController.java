@@ -19,27 +19,27 @@ public class AuthorizationController {
 
     /**
      * Method returns page for authorization
+     *
      * @return an address  of page for authorization
      */
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String loginPage(){
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
         return "login";
     }
 
     /**
      * Method serves for logout of users from the system
      *
-     * @param request a Http request
+     * @param request  a Http request
      * @param response a Http response
      * @return an address of logout page
      */
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response){
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(
                 request, response,
-                SecurityContextHolder.getContext().getAuthentication());
-
+                SecurityContextHolder.getContext().getAuthentication()
+        );
         return "redirect:/login?logout";
     }
-
 }

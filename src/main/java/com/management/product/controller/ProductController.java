@@ -59,10 +59,12 @@ public class ProductController {
      * @return an address of saved product`s page
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addNewProduct(@RequestParam(value = "title", defaultValue = "") String title,
-                                @RequestParam(value = "manufacturer", defaultValue = "") String manufacturer,
-                                @RequestParam(value = "description", defaultValue = "") String description,
-                                @RequestParam(value = "cost", defaultValue = "0") int cost) {
+    public String addNewProduct(
+            @RequestParam(value = "title", defaultValue = "") String title,
+            @RequestParam(value = "manufacturer", defaultValue = "") String manufacturer,
+            @RequestParam(value = "description", defaultValue = "") String description,
+            @RequestParam(value = "cost", defaultValue = "0") int cost
+    ) {
         Product productToAdd = new Product(title, manufacturer, description, cost);
         Product productFromDb = productService.add(productToAdd);
         return "redirect:/product/" + productFromDb.getId();
@@ -94,20 +96,20 @@ public class ProductController {
      * @return an address of edited product`s page
      */
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String update(@PathVariable(name = "id") long id,
-                         @RequestParam(value = "title", defaultValue = "") String title,
-                         @RequestParam(value = "manufacturer", defaultValue = "") String manufacturer,
-                         @RequestParam(value = "description", defaultValue = "") String description,
-                         @RequestParam(value = "cost", defaultValue = "0") int cost) {
+    public String update(
+            @PathVariable(name = "id") long id,
+            @RequestParam(value = "title", defaultValue = "") String title,
+            @RequestParam(value = "manufacturer", defaultValue = "") String manufacturer,
+            @RequestParam(value = "description", defaultValue = "") String description,
+            @RequestParam(value = "cost", defaultValue = "0") int cost
+    ) {
         Product productToUpdate = productService.get(id);
         productToUpdate.setTitle(title);
         productToUpdate.setManufacturer(manufacturer);
         productToUpdate.setDescription(description);
         productToUpdate.setCost(cost);
-
-        productService.update(productToUpdate);
-
-        return ("redirect:/product/" + id);
+        Product productFromDb = productService.update(productToUpdate);
+        return ("redirect:/product/" + productFromDb.getId());
     }
 
     /**
@@ -132,5 +134,4 @@ public class ProductController {
         productService.removeAll();
         return "redirect:/home";
     }
-
 }

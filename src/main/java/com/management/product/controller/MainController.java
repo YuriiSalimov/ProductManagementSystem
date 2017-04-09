@@ -35,7 +35,7 @@ public class MainController {
      * Constructor
      *
      * @param productService an instance of implementation {@link ProductService} interface
-     * @param userService an instance of implementation {@link UserService} interface
+     * @param userService    an instance of implementation {@link UserService} interface
      */
     @Autowired
     public MainController(ProductService productService, UserService userService) {
@@ -48,7 +48,7 @@ public class MainController {
      *
      * @return model and view of index page
      */
-    @RequestMapping(value = {"", "/", "/index", "home"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "", "/", "/index", "home" }, method = RequestMethod.GET)
     public ModelAndView getIndexPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("products", productService.getAll());
@@ -74,7 +74,6 @@ public class MainController {
     /**
      * Method defines models and view for product page
      *
-     * @return model and view of users page
      * @param id a unique identifier for product
      * @return model and view for product info page
      */

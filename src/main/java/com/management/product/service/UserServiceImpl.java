@@ -155,7 +155,7 @@ public class UserServiceImpl extends DataServiceImpl<User> implements UserServic
         User user;
         try {
             user = getByUsername(username);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw new UsernameNotFoundException(e.getMessage());
         }
         return user;

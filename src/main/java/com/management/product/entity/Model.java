@@ -9,7 +9,6 @@ import java.io.Serializable;
  *
  * @author Вадим
  */
-
 @MappedSuperclass
 public abstract class Model implements Serializable {
 
