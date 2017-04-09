@@ -38,10 +38,10 @@
                 <th>Price</th>
                 <th>Description</th>
                 <th>Show Detail Info</th>
-                <c:if test="${is_admin== true}">
+                <c:if test="${is_admin == true}">
                     <th>Edit</th>
                 </c:if>
-                <c:if test="${is_admin== true}">
+                <c:if test="${is_admin == true}">
                     <th>Delete</th>
                 </c:if>
             </tr>
