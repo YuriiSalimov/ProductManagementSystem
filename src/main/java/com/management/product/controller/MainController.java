@@ -57,7 +57,11 @@ public class MainController {
         return modelAndView;
     }
 
-
+    /**
+     * Method defines models and view for users page
+     *
+     * @return model and view of users page
+     */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getUsersPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -67,6 +71,13 @@ public class MainController {
         return modelAndView;
     }
 
+    /**
+     * Method defines models and view for product page
+     *
+     * @return model and view of users page
+     * @param id a unique identifier for product
+     * @return model and view for product info page
+     */
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
     public ModelAndView getProductPage(@PathVariable(name = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
