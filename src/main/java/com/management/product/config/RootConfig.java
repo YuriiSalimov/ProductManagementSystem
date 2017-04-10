@@ -162,25 +162,6 @@ public class RootConfig {
     private String entityPackages;
 
     /**
-     * The method returns datasource url
-     */
-    private String getDataSourceUrl() {
-        return this.jdbcDriverUrl + "://" + this.hostIp + ":" + this.hostPort + "/" + this.databaseName;
-    }
-
-    /**
-     * The method returns database connection properties
-     */
-    private String createDatabaseConnectionProperties() {
-        return "useSSL=" + this.useSsl + ";\n"
-                + "useUnicode=" + this.useUnicode + ";\n"
-                + "characterEncoding=" + this.characterEncoding + ";\n"
-                + "useJDBCCompliantTimezoneShift=" + this.useJdbcCompliantTimezoneShift + ";\n"
-                + "useLegacyDatetimeCode=" + this.useLegacyDatetimeCode + ";\n"
-                + "serverTimezone" + this.serverTimezone;
-    }
-
-    /**
      * The method returns datasource
      */
     @Bean
@@ -251,5 +232,25 @@ public class RootConfig {
     @Bean
     public PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+
+    /**
+     * The method returns datasource url
+     */
+    private String getDataSourceUrl() {
+        return this.jdbcDriverUrl + "://" + this.hostIp + ":" + this.hostPort + "/" + this.databaseName;
+    }
+
+    /**
+     * The method returns database connection properties
+     */
+    private String createDatabaseConnectionProperties() {
+        return "useSSL=" + this.useSsl + ";\n"
+                + "useUnicode=" + this.useUnicode + ";\n"
+                + "characterEncoding=" + this.characterEncoding + ";\n"
+                + "useJDBCCompliantTimezoneShift=" + this.useJdbcCompliantTimezoneShift + ";\n"
+                + "useLegacyDatetimeCode=" + this.useLegacyDatetimeCode + ";\n"
+                + "serverTimezone" + this.serverTimezone;
     }
 }
