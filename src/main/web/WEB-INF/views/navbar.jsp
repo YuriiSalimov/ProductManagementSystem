@@ -10,7 +10,7 @@
                     <a class="btn btn-primary" role="button" href="<c:url value='/login'/>">Login</a>
                 </c:if>
                 <c:if test="${is_admin}">
-                    <a class="btn btn-primary" role="button" href="<c:url value='/login'/>">Logout</a>
+                    <a class="btn btn-primary" role="button" href="<c:url value='/logout'/>">Logout</a>
                 </c:if>
             </div>
         </div>
