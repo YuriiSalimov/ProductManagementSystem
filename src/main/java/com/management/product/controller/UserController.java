@@ -57,7 +57,7 @@ public class UserController {
      *
      * @param username user's name
      * @param password user's password
-     * @param role user's role
+     * @param role     user's role
      * @param isLocked information about locking user's account
      * @return an address of users page
      */
@@ -66,7 +66,7 @@ public class UserController {
                              @RequestParam(value = "password", defaultValue = "") String password,
                              @RequestParam(value = "role", defaultValue = "USER") UserRole role,
                              @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
-    ){
+    ) {
         User userToAdd = new User(username, password, role);
         userToAdd.setLocked(isLocked);
         userService.add(userToAdd);
@@ -92,10 +92,10 @@ public class UserController {
     /**
      * Method to update user
      *
-     * @param id user's id
+     * @param id       user's id
      * @param username user's name
      * @param password user's password
-     * @param role user's role
+     * @param role     user's role
      * @param isLocked information about locking user's account
      * @return an address of users page
      */
