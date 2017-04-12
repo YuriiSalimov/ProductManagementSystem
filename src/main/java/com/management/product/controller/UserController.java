@@ -64,7 +64,7 @@ public class UserController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addNewUser(@RequestParam(value = "username", defaultValue = "") String username,
                              @RequestParam(value = "password", defaultValue = "") String password,
-                             @RequestParam(value = "role", defaultValue = "CLIENT") UserRole role,
+                             @RequestParam(value = "role", defaultValue = "USER") UserRole role,
                              @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
     ){
         User userToAdd = new User(username, password, role);
@@ -101,7 +101,7 @@ public class UserController {
     public String updateUser(@PathVariable(name = "id") long id,
                              @RequestParam(value = "username", defaultValue = "") String username,
                              @RequestParam(value = "password", defaultValue = "") String password,
-                             @RequestParam(value = "role", defaultValue = "CLIENT") UserRole role,
+                             @RequestParam(value = "role", defaultValue = "USER") UserRole role,
                              @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
     ) {
         User user = new User(username, password, role);
