@@ -17,7 +17,10 @@ public class IllegalAccessController {
      *
      * @throws IllegalAccessException in case when user doesn`t have rights to access the request
      */
-    @RequestMapping(value = "/illegal_access_exception", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/illegal_access_exception",
+            method = RequestMethod.GET
+    )
     public void getIllegalAccessException() throws IllegalAccessException {
         throw new IllegalAccessException("The user does not have rights to access the request");
     }

@@ -27,7 +27,6 @@ public class UserController {
      */
     private final UserService userService;
 
-
     /**
      * Constructor.
      *
@@ -43,7 +42,10 @@ public class UserController {
      *
      * @return a page to add a new user
      */
-    @RequestMapping(value = "/user/new", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/user/new",
+            method = RequestMethod.GET
+    )
     public ModelAndView getNewUserPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("roles", UserRole.values());
@@ -61,11 +63,15 @@ public class UserController {
      * @param isLocked information about locking user's account
      * @return an address of users page
      */
-    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public String addNewUser(@RequestParam(value = "username", defaultValue = "") String username,
-                             @RequestParam(value = "password", defaultValue = "") String password,
-                             @RequestParam(value = "role", defaultValue = "USER") UserRole role,
-                             @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
+    @RequestMapping(
+            value = "/user/add",
+            method = RequestMethod.POST
+    )
+    public String addNewUser(
+            @RequestParam(value = "username", defaultValue = "") String username,
+            @RequestParam(value = "password", defaultValue = "") String password,
+            @RequestParam(value = "role", defaultValue = "USER") UserRole role,
+            @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
     ) {
         User userToAdd = new User(username, password, role);
         userToAdd.setLocked(isLocked);
@@ -79,7 +85,10 @@ public class UserController {
      * @param id user's id
      * @return a page to update a new user
      */
-    @RequestMapping(value = "/admin/user/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/admin/user/edit/{id}",
+            method = RequestMethod.GET
+    )
     public ModelAndView getPageForUpdatingUser(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", this.userService.get(id));
@@ -99,12 +108,16 @@ public class UserController {
      * @param isLocked information about locking user's account
      * @return an address of users page
      */
-    @RequestMapping(value = "/admin/user/update/{id}", method = RequestMethod.POST)
-    public String updateUser(@PathVariable(name = "id") long id,
-                             @RequestParam(value = "username", defaultValue = "") String username,
-                             @RequestParam(value = "password", defaultValue = "") String password,
-                             @RequestParam(value = "role", defaultValue = "USER") UserRole role,
-                             @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
+    @RequestMapping(
+            value = "/admin/user/update/{id}",
+            method = RequestMethod.POST
+    )
+    public String updateUser(
+            @PathVariable(name = "id") long id,
+            @RequestParam(value = "username", defaultValue = "") String username,
+            @RequestParam(value = "password", defaultValue = "") String password,
+            @RequestParam(value = "role", defaultValue = "USER") UserRole role,
+            @RequestParam(value = "locked", defaultValue = "false") boolean isLocked
     ) {
         User user = userService.get(id);
         user.setUsername(username);
@@ -121,7 +134,10 @@ public class UserController {
      * @param id users's id
      * @return an address of users page
      */
-    @RequestMapping(value = "/admin/user/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/admin/user/delete/{id}",
+            method = RequestMethod.GET
+    )
     public String deleteUser(@PathVariable(name = "id") long id) {
         userService.remove(id);
         return "redirect:/users";
@@ -132,7 +148,10 @@ public class UserController {
      *
      * @return an address of users page
      */
-    @RequestMapping(value = "/admin/user/delete/all", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/admin/user/delete/all",
+            method = RequestMethod.GET
+    )
     public String deleteAllUsers() {
         userService.removeAll();
         return "redirect:/users";

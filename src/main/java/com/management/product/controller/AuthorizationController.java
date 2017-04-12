@@ -22,7 +22,10 @@ public class AuthorizationController {
      *
      * @return an address  of page for authorization
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/login",
+            method = RequestMethod.GET
+    )
     public String loginPage() {
         return "login";
     }
@@ -34,7 +37,10 @@ public class AuthorizationController {
      * @param response a Http response
      * @return an address of logout page
      */
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @RequestMapping(
+            value = "/logout",
+            method = RequestMethod.POST
+    )
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(
                 request, response,
