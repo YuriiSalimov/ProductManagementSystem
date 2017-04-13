@@ -25,27 +25,27 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     /**
      * The field defines type of encoding to be used
      */
-    private final String ENCODING = "UTF-8";
+    private static final String ENCODING = "UTF-8";
 
     /**
      * The field defines type of force encoding to be used
      */
-    private final String FORCE_ENCODING = "UTF-8";
+    private static final String FORCE_ENCODING = "UTF-8";
 
     /**
      * If true
      */
-    private final boolean MAPPING_FOR_URL_IS_MATCH_AFTER = true;
+    private static final boolean MAPPING_FOR_URL_IS_MATCH_AFTER = true;
 
     /**
      * The field defines mapping pattern for URL
      */
-    private final String MAPPING_FOR_URL_PATTERNS = "/*";
+    private static final String MAPPING_FOR_URL_PATTERNS = "/*";
 
     /**
      * If true exception will be thrown in case handler hasn't been found
      */
-    private final boolean THROW_EXCEPTION_IF_NO_HANDLER_FOUND = true;
+    private static final boolean THROW_EXCEPTION_IF_NO_HANDLER_FOUND = true;
 
     /**
      * Default constructor
