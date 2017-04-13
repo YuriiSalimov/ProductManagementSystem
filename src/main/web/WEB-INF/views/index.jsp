@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<%@include file="/WEB-INF/views/navbar.jsp" %>
+<jsp:include page="/WEB-INF/views/navbar.jsp"/>
 <div class="container">
     <div class="table-responsive">
         <table class="table table-striped">
