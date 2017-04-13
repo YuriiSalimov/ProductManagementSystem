@@ -48,7 +48,10 @@ public class MainController {
      *
      * @return model and view of index page
      */
-    @RequestMapping(value = { "", "/", "/index", "home" }, method = RequestMethod.GET)
+    @RequestMapping(
+            value = { "", "/", "/index", "home" },
+            method = RequestMethod.GET
+    )
     public ModelAndView getIndexPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("products", productService.getAll());
@@ -62,7 +65,10 @@ public class MainController {
      *
      * @return model and view of users page
      */
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/users",
+            method = RequestMethod.GET
+    )
     public ModelAndView getUsersPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("users", userService.getAll());
@@ -77,7 +83,10 @@ public class MainController {
      * @param id a unique identifier for product
      * @return model and view for product info page
      */
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/product/{id}",
+            method = RequestMethod.GET
+    )
     public ModelAndView getProductPage(@PathVariable(name = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("product", productService.get(id));

@@ -26,9 +26,9 @@ import javax.sql.DataSource;
  */
 @Configuration
 @PropertySource(value = "classpath:database.properties")
-@ComponentScan(basePackages = {"com.management.product.entity"})
+@ComponentScan(basePackages = { "com.management.product.entity" })
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.management.product.repository"})
+@EnableJpaRepositories(basePackages = { "com.management.product.repository" })
 public class RootConfig {
 
     /**
@@ -61,7 +61,6 @@ public class RootConfig {
     @Value("${database.name}")
     private String databaseName;
 
-
     /**
      * Database username
      */
@@ -93,7 +92,8 @@ public class RootConfig {
     private String characterEncoding;
 
     /**
-     * The parameter shows whether JdbcCompliantTimezoneShift enabled or disabled
+     * The parameter shows whether JdbcCompliantTimezoneShift
+     * enabled or disabled
      */
     @Value("${database.use-jdbc-compliant-timezone-shift}")
     private boolean useJdbcCompliantTimezoneShift;
@@ -131,8 +131,10 @@ public class RootConfig {
     private boolean testOnBorrow;
 
     /**
-     * The SQL query that will be used to validate connections from this pool before returning them to the caller.
-     * If specified, this query MUST be an SQL SELECT statement that returns at least one row.
+     * The SQL query that will be used to validate connections
+     * from this poolbefore returning them to the caller.
+     * If specified, this query MUST be an SQL SELECT statement
+     * that returns at least one row.
      */
     @Value("${database.validation-query}")
     private String validationQuery;
@@ -150,7 +152,8 @@ public class RootConfig {
     private boolean isShowSql;
 
     /**
-     * The parameter defines whether to generate DDL after the EntityManagerFactory has been initialized, creating/updating all relevant tables.
+     * The parameter defines whether to generate DDL after the EntityManagerFactory
+     * has been initialized, creating/updating all relevant tables.
      */
     @Value("${hibernate.generate-ddl}")
     private boolean isGenerateDdl;
@@ -199,7 +202,7 @@ public class RootConfig {
      */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
-                                                                       HibernateJpaVendorAdapter hibernateJpaVendorAdapter) {
+            HibernateJpaVendorAdapter hibernateJpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource);
         emf.setJpaVendorAdapter(hibernateJpaVendorAdapter);
@@ -217,7 +220,6 @@ public class RootConfig {
         return new JpaTransactionManager(emf);
     }
 
-
     /**
      * The method returns {@link BeanPostProcessor}
      */
@@ -233,7 +235,6 @@ public class RootConfig {
     public PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-
 
     /**
      * The method returns datasource url

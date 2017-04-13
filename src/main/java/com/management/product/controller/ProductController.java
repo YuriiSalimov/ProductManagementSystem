@@ -41,7 +41,10 @@ public class ProductController {
      *
      * @return a page to add a new product
      */
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/new",
+            method = RequestMethod.GET
+    )
     public ModelAndView getNewProductPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("is_admin", true);
@@ -58,7 +61,10 @@ public class ProductController {
      * @param cost         a product cost
      * @return an address of saved product`s page
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(
+            value = "/add",
+            method = RequestMethod.POST
+    )
     public String addNewProduct(
             @RequestParam(value = "title", defaultValue = "") String title,
             @RequestParam(value = "manufacturer", defaultValue = "") String manufacturer,
@@ -76,7 +82,10 @@ public class ProductController {
      * @param id a unique identifier for product
      * @return a page to edit a product
      */
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/edit/{id}",
+            method = RequestMethod.GET
+    )
     public ModelAndView getPageForUpdatingProduct(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("product", productService.get(id));
@@ -95,7 +104,10 @@ public class ProductController {
      * @param cost         a product cost
      * @return an address of edited product`s page
      */
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @RequestMapping(
+            value = "/update/{id}",
+            method = RequestMethod.POST
+    )
     public String update(
             @PathVariable(name = "id") long id,
             @RequestParam(value = "title", defaultValue = "") String title,
@@ -118,7 +130,10 @@ public class ProductController {
      * @param id a unique identifier for product
      * @return an address of home page
      */
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/delete/{id}",
+            method = RequestMethod.GET
+    )
     public String deleteProduct(@PathVariable(name = "id") long id) {
         productService.remove(id);
         return "redirect:/home";
@@ -129,7 +144,10 @@ public class ProductController {
      *
      * @return an address of home page
      */
-    @RequestMapping(value = "/delete/all", method = RequestMethod.GET)
+    @RequestMapping(
+            value = "/delete/all",
+            method = RequestMethod.GET
+    )
     public String deleteAllProducts() {
         productService.removeAll();
         return "redirect:/home";
