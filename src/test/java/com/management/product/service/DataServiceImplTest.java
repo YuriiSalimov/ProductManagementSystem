@@ -1,16 +1,12 @@
 package com.management.product.service;
 
 import com.management.product.entity.Model;
-import com.management.product.service.DataService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collection;
 import java.util.HashSet;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Class for testing {@link com.management.product.service.DataServiceImpl}
@@ -30,7 +26,6 @@ public abstract class DataServiceImplTest<T extends Model> {
     @Test
     public void addAndGetTest() throws Exception {
         T object = getObject();
-
         object = dataService.add(object);
         Assert.assertEquals(object, dataService.get(object.getId()));
         Assert.assertFalse(dataService.get(1L).equals(null));
@@ -51,8 +46,7 @@ public abstract class DataServiceImplTest<T extends Model> {
     public void addAllTest() throws Exception {
         Collection<T> collection = getObjects();
         collection = dataService.addAll(collection);
-
-        for(T object : collection){
+        for (T object : collection) {
             Assert.assertEquals(object, dataService.get(object.getId()));
         }
     }
@@ -60,14 +54,13 @@ public abstract class DataServiceImplTest<T extends Model> {
     @Test
     public void updateAllTest() throws Exception {
         Collection<T> collection = new HashSet<T>();
-        for(int i=1; i<4; i++) {
+        for (int i = 1; i < 4; i++) {
             T object = getObject();
             object.setId(i);
             collection.add(object);
         }
         dataService.updateAll(collection);
-
-        for (T object:collection) {
+        for (T object : collection) {
             Assert.assertEquals(object, dataService.get(object.getId()));
         }
     }
@@ -96,10 +89,8 @@ public abstract class DataServiceImplTest<T extends Model> {
     public void existTest() throws Exception {
         T object = getObject();
         Assert.assertFalse(dataService.exist(object));
-
         object = dataService.get(1L);
         Assert.assertTrue(dataService.exist(object));
-
         Assert.assertFalse(dataService.exist(99999999L));
         Assert.assertTrue(dataService.exist(1L));
     }
