@@ -6,7 +6,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 /**
- * A Class intercepts exceptions that throw out during the work of methods of other classes.
+ * A Class intercepts exceptions that throw out during
+ * the work of methods of other classes.
  *
  * @author Вадим
  */
@@ -24,9 +25,11 @@ public class ExceptionAspectController {
      *
      * @param ex a exception, which will be register in method
      */
-    @AfterThrowing(pointcut = "execution(*com.management.product..controller..*(..))", throwing = "ex")
+    @AfterThrowing(
+            pointcut = "execution(* com.management.product..controller..*(..))",
+            throwing = "ex"
+    )
     public void afterThrowingAdvice(Exception ex) {
-
         LOGGER.error("EXCEPTION IN METHOD " + ex.getClass());
     }
 }

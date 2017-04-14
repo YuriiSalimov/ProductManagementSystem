@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception An exception that can be thrown by HttpSecurity class methods
      */
     @Override
-    protected void configure(HttpSecurity httpSecurity)  throws Exception  {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .logout()
                 .invalidateHttpSession(false)
