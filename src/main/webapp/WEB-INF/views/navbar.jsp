@@ -4,16 +4,20 @@
 <div class="container">
     <div class="panel-heading">
         <div class="row">
-            <a href="<c:url value='/home'/>"><h4 class="col-lg-3">Product Management System</h4></a>
+            <h4 class="col-lg-3">
+                <a href="<c:url value='/home'/>">Product Management System</a>
+            </h4>
             <div class="btn-group pull-right">
                 <a class="btn btn-primary" role="button" href="<c:url value='/home'/>">Products</a>
                 <a class="btn btn-primary" role="button" href="<c:url value='/users'/>">Users</a>
-                <c:if test="${is_admin ne true}">
-                    <a class="btn btn-primary" role="button" href="<c:url value='/login'/>">Login</a>
-                </c:if>
-                <c:if test="${is_admin}">
-                    <a class="btn btn-primary" role="button" href="<c:url value='/logout'/>">Logout</a>
-                </c:if>
+                <c:choose>
+                    <c:when test="${is_admin}">
+                        <a class="btn btn-primary" role="button" href="<c:url value='/logout'/>">Logout</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="btn btn-primary" role="button" href="<c:url value='/login'/>">Login</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
         <hr>
