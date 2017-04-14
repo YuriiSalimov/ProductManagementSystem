@@ -232,7 +232,7 @@ public class RootConfig {
      * The method returns {@link PropertySourcesPlaceholderConfigurer}
      */
     @Bean
-    public PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
@@ -247,11 +247,11 @@ public class RootConfig {
      * The method returns database connection properties
      */
     private String createDatabaseConnectionProperties() {
-        return "useSSL=" + this.useSsl + ";\n"
-                + "useUnicode=" + this.useUnicode + ";\n"
-                + "characterEncoding=" + this.characterEncoding + ";\n"
-                + "useJDBCCompliantTimezoneShift=" + this.useJdbcCompliantTimezoneShift + ";\n"
-                + "useLegacyDatetimeCode=" + this.useLegacyDatetimeCode + ";\n"
-                + "serverTimezone" + this.serverTimezone;
+        return "useSSL=" + this.useSsl + ";"
+                + "useUnicode=" + this.useUnicode + ";"
+                + "characterEncoding=" + this.characterEncoding + ";"
+                + "useJDBCCompliantTimezoneShift=" + this.useJdbcCompliantTimezoneShift + ";"
+                + "useLegacyDatetimeCode=" + this.useLegacyDatetimeCode + ";"
+                + "serverTimezone=" + this.serverTimezone;
     }
 }
