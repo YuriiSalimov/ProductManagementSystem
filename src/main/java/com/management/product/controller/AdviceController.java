@@ -24,56 +24,6 @@ public class AdviceController {
     private static final Logger logger = Logger.getLogger(AdviceController.class);
 
     /**
-     * Error logging
-     *
-     * @param ex intercepted exception
-     */
-    private static void logException(Exception ex) {
-        logger.error(ex.getMessage(), ex);
-        ex.printStackTrace();
-    }
-
-    /**
-     * Request logging
-     *
-     * @param request HTTP servlets request
-     */
-    private static void logRequest(final HttpServletRequest request) {
-        if (request != null) {
-            logger.error(request.getRemoteAddr() + " : " + request.getRequestURI());
-        }
-    }
-
-    /**
-     * The method creates and returns ModelAndView object.
-     *
-     * @param status  a http status.
-     * @param message an exception's message.
-     * @return new ModelAndView object with information about exception.
-     */
-    private ModelAndView prepareModelAndView(HttpStatus status, String message) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message", message);
-        modelAndView.addObject("status", status.value());
-        modelAndView.setViewName("error");
-        return modelAndView;
-    }
-
-    /**
-     * Handles all Exceptions.
-     *
-     * @param ex      an exception.
-     * @param request HTTP servlets request.
-     * @param status  a http status.
-     * @return new ModelAndView object with information about exception.
-     */
-    private ModelAndView handleException(Exception ex, HttpServletRequest request, HttpStatus status) {
-        logRequest(request);
-        logException(ex);
-        return prepareModelAndView(status, ex.getClass().getSimpleName() + " : " + ex.getMessage());
-    }
-
-    /**
      * Intercepts and handles NoHandlerFoundException.
      *
      * @param ex      an intercepted exception.
@@ -165,5 +115,55 @@ public class AdviceController {
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView Exception(Exception ex, HttpServletRequest request) {
         return handleException(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * The method creates and returns ModelAndView object.
+     *
+     * @param status  a http status.
+     * @param message an exception's message.
+     * @return new ModelAndView object with information about exception.
+     */
+    private ModelAndView prepareModelAndView(HttpStatus status, String message) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", message);
+        modelAndView.addObject("status", status.value());
+        modelAndView.setViewName("error");
+        return modelAndView;
+    }
+
+    /**
+     * Handles all Exceptions.
+     *
+     * @param ex      an exception.
+     * @param request HTTP servlets request.
+     * @param status  a http status.
+     * @return new ModelAndView object with information about exception.
+     */
+    private ModelAndView handleException(Exception ex, HttpServletRequest request, HttpStatus status) {
+        logRequest(request);
+        logException(ex);
+        return prepareModelAndView(status, ex.getClass().getSimpleName() + " : " + ex.getMessage());
+    }
+
+    /**
+     * Error logging
+     *
+     * @param ex intercepted exception
+     */
+    private static void logException(Exception ex) {
+        logger.error(ex.getMessage(), ex);
+        ex.printStackTrace();
+    }
+
+    /**
+     * Request logging
+     *
+     * @param request HTTP servlets request
+     */
+    private static void logRequest(final HttpServletRequest request) {
+        if (request != null) {
+            logger.error(request.getRemoteAddr() + " : " + request.getRequestURI());
+        }
     }
 }
