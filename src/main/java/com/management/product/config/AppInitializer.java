@@ -29,7 +29,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     /**
      * The field defines type of force encoding to be used
      */
-    private static final String FORCE_ENCODING = "UTF-8";
+    private static final String FORCE_ENCODING = "true";
 
     /**
      * If true
