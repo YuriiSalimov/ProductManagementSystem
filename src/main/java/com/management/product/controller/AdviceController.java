@@ -32,7 +32,10 @@ public class AdviceController {
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ModelAndView NoHandlerFoundException(NoHandlerFoundException ex, HttpServletRequest request) {
+    public ModelAndView NoHandlerFoundException(
+            NoHandlerFoundException ex,
+            HttpServletRequest request
+    ) {
         return handleException(ex, request, HttpStatus.NOT_FOUND);
     }
 
@@ -45,7 +48,10 @@ public class AdviceController {
      */
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ModelAndView NullPointerException(NullPointerException ex, HttpServletRequest request) {
+    public ModelAndView NullPointerException(
+            NullPointerException ex,
+            HttpServletRequest request
+    ) {
         return handleException(ex, request, HttpStatus.BAD_REQUEST);
     }
 
@@ -58,7 +64,10 @@ public class AdviceController {
      */
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
-    public ModelAndView IllegalArgumentException(IllegalArgumentException ex, HttpServletRequest request) {
+    public ModelAndView IllegalArgumentException(
+            IllegalArgumentException ex,
+            HttpServletRequest request
+    ) {
         return handleException(ex, request, HttpStatus.NOT_ACCEPTABLE);
     }
 
@@ -87,7 +96,10 @@ public class AdviceController {
      */
     @ExceptionHandler(IllegalAccessException.class)
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
-    public ModelAndView IllegalAccessException(IllegalAccessException ex, HttpServletRequest request) {
+    public ModelAndView IllegalAccessException(
+            IllegalAccessException ex,
+            HttpServletRequest request
+    ) {
         return handleException(ex, request, HttpStatus.FORBIDDEN);
     }
 
@@ -100,7 +112,10 @@ public class AdviceController {
      */
     @ExceptionHandler(IllegalMappingException.class)
     @ResponseStatus(value = HttpStatus.METHOD_NOT_ALLOWED)
-    public ModelAndView IllegalMappingException(IllegalMappingException ex, HttpServletRequest request) {
+    public ModelAndView IllegalMappingException(
+            IllegalMappingException ex,
+            HttpServletRequest request
+    ) {
         return handleException(ex, request, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
@@ -140,7 +155,11 @@ public class AdviceController {
      * @param status  a http status.
      * @return new ModelAndView object with information about exception.
      */
-    private ModelAndView handleException(Exception ex, HttpServletRequest request, HttpStatus status) {
+    private ModelAndView handleException(
+            Exception ex,
+            HttpServletRequest request,
+            HttpStatus status
+    ) {
         logRequest(request);
         logException(ex);
         return prepareModelAndView(status, ex.getClass().getSimpleName() + " : " + ex.getMessage());
