@@ -87,7 +87,7 @@ public class MainController {
             value = "/product/{id}",
             method = RequestMethod.GET
     )
-    public ModelAndView getProductPage(@PathVariable(name = "id") Long id) {
+    public ModelAndView getProductPage(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("product", productService.get(id));
         modelAndView.addObject("is_admin", userService.isAuthenticatedAdmin());

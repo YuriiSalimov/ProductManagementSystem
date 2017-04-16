@@ -13,13 +13,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- *  Spring MVC configuration class
+ * Spring MVC configuration class
  *
  * @author Вадим
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.management.product.controller", "com.management.product.config"})
+@ComponentScan(basePackages = { "com.management.product.controller", "com.management.product.config" })
 @PropertySource("classpath:content.properties")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -65,7 +65,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      * @return an instance of {@link ViewResolver}
      */
     @Bean
-    public ViewResolver viewResolver(){
+    public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setContentType(contentType);
