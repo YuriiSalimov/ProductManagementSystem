@@ -19,11 +19,12 @@
             <div class="form-group">
                 <input type="password" class="form-control" name="password" required placeholder="Password">
             </div>
+
             <c:if test="${is_admin}">
                 <div class="form-group">
                     <c:forEach items="${roles}" var="role">
                         <label>
-                            <input type="radio" name="role" value="<c:out value="${role}"/>" checked required/>
+                            <input type="radio" name="role" value="<c:out value="${role}"/>" required/>
                             <c:out value="${role}"/>
                         </label>
                         &nbsp;&nbsp;
