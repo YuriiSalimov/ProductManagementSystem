@@ -11,9 +11,9 @@
 <jsp:include page="/WEB-INF/views/navbar.jsp"/>
 <div class="container">
     <h4><b>Users</b></h4>
+    <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+       href="<c:out value="/user/new"/>">Add New</a>
     <c:if test="${is_admin}">
-        <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-           href="<c:out value="/admin/user/new"/>">Add New</a>
         <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
            href="<c:out value="/admin/user/delete/all"/>">Delete All</a>
     </c:if>
