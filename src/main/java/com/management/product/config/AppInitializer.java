@@ -19,8 +19,6 @@ import javax.servlet.ServletException;
 @Configuration
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-
-
     /**
      * The field defines type of encoding to be used
      */
@@ -47,17 +45,14 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     private static final boolean THROW_EXCEPTION_IF_NO_HANDLER_FOUND = true;
 
     /**
-     * Default constructor
-     */
-    public AppInitializer() {
-    }
-
-    /**
      * The method returns classes of root config
      */
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{RootConfig.class, SecurityConfig.class};
+        return new Class[] {
+                RootConfig.class,
+                SecurityConfig.class
+        };
     }
 
     /**
@@ -65,7 +60,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
      */
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[] { "/" };
     }
 
     /**
@@ -76,10 +71,15 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        FilterRegistration.Dynamic dynamic = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
+        FilterRegistration.Dynamic dynamic = servletContext
+                .addFilter("encodingFilter", new CharacterEncodingFilter());
         dynamic.setInitParameter("encoding", ENCODING);
         dynamic.setInitParameter("forceEncoding", FORCE_ENCODING);
-        dynamic.addMappingForUrlPatterns(null, MAPPING_FOR_URL_IS_MATCH_AFTER, MAPPING_FOR_URL_PATTERNS);
+        dynamic.addMappingForUrlPatterns(
+                null,
+                MAPPING_FOR_URL_IS_MATCH_AFTER,
+                MAPPING_FOR_URL_PATTERNS
+        );
     }
 
     /**
@@ -99,6 +99,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
      */
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class[] { WebConfig.class };
     }
 }
