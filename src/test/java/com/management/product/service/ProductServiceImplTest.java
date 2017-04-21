@@ -83,9 +83,24 @@ public class ProductServiceImplTest extends DataServiceImplTest<Product> {
     }
 
     @Override
+    @Test(expected = IllegalArgumentException.class)
     public void removeTest() throws Exception {
         productService.remove(99999);
         verify(repository).delete(99999l);
+        Product productToRemove = new Product("productToRemove", 1452);
+        productService.remove(productToRemove);
+        verify(repository).delete(productToRemove);
+        Product productNull = null;
+        productService.remove(productNull);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void removeCollectionTest() throws Exception {
+        productService.remove(getObjects());
+        verify(repository).delete(product1);
+        verify(repository).delete(product2);
+        Collection<Product> collection = null;
+        productService.remove(collection);
     }
 
     @Override
@@ -129,6 +144,20 @@ public class ProductServiceImplTest extends DataServiceImplTest<Product> {
         verify(repository, never()).deleteByTitle(" ");
     }
 
+    @Test
+    public void removeAllTest()throws Exception {
+        productService.removeAll();
+        verify(repository).deleteAll();
+    }
+
+    @Test
+    public void getAllTest() throws Exception {
+        when(repository.findAll()).thenReturn(getObjects());
+        assertEquals(productService.getAll(), getObjects());
+        verify(repository).findAll();
+    }
+
+
     /**
      * Getter for field productService.
      *
@@ -155,7 +184,7 @@ public class ProductServiceImplTest extends DataServiceImplTest<Product> {
      * @return a collection of {@link Product}s
      */
     @Override
-    protected Collection<Product> getObjects() {
+    protected List<Product> getObjects() {
         List<Product> products = new ArrayList<>();
         products.add(product1);
         products.add(product2);
