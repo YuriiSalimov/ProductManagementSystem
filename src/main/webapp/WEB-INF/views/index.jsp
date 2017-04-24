@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +10,13 @@
 <body>
 <jsp:include page="/WEB-INF/views/navbar.jsp"/>
 <div class="container">
+    <h4><b>Products</b></h4>
+    <c:if test="${is_admin}">
+        <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+           href="<c:out value="/admin/product/new"/>">Add New</a>
+        <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+           href="<c:out value="/admin/product/delete/all"/>">Delete All</a>
+    </c:if>
     <div class="table-responsive">
         <table class="table table-striped">
             <tr>
@@ -47,10 +54,6 @@
             </c:forEach>
         </table>
     </div>
-    <c:if test="${is_admin}">
-        <a class="btn btn-xs btn-block btn-primary active" role="button"
-           href="<c:url value="/admin/product/new"/>">Add an Item</a>
-    </c:if>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

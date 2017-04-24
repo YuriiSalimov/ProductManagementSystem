@@ -13,34 +13,36 @@
     <h4><b>Users</b></h4>
     <c:if test="${is_admin}">
         <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
-           href="<c:out value="/admin/user/new"/>">Add New</a>
+           href="<c:out value="/user/new"/>">Add New</a>
         <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
            href="<c:out value="/admin/user/delete/all"/>">Delete All</a>
     </c:if>
-
     <div class="table-responsive">
         <table class="table table-striped">
             <tr>
                 <th>UserName</th>
                 <th>Role</th>
+                <c:if test="${is_admin}">
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </c:if>
             </tr>
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td><c:out value="${user.username}"/></td>
                     <td><c:out value="${user.role}"/></td>
                     <c:if test="${is_admin}">
-                        <th>
+                        <td>
                             <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
                                href="<c:out value="/admin/user/edit/${user.id}"/>">Edit</a>
-                        </th>
-                        <th>
-                            <a class="btn btn-xs btn-primary active" role="button" style="margin: 5px"
+                        </td>
+                        <td>
+                            <a class="btn btn-xs btn-danger active" role="button" style="margin: 5px"
                                href="<c:out value="/admin/user/delete/${user.id}"/>">Delete</a>
-                        </th>
+                        </td>
                     </c:if>
                 </tr>
             </c:forEach>
-
         </table>
     </div>
 </div>

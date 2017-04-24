@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -23,12 +24,13 @@ public abstract class DataServiceImplTest<T extends Model> {
         dataService = getService();
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void addAndGetTest() throws Exception {
         T object = getObject();
         object = dataService.add(object);
         Assert.assertEquals(object, dataService.get(object.getId()));
         Assert.assertFalse(dataService.get(1L).equals(null));
+        dataService.add(null);
     }
 
     @Test
@@ -49,12 +51,13 @@ public abstract class DataServiceImplTest<T extends Model> {
         for (T object : collection) {
             Assert.assertEquals(object, dataService.get(object.getId()));
         }
+        Assert.assertTrue(dataService.addAll(null).size() == 0);
     }
 
     @Test
     public void updateAllTest() throws Exception {
         Collection<T> collection = new HashSet<T>();
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 3; i++) {
             T object = getObject();
             object.setId(i);
             collection.add(object);
