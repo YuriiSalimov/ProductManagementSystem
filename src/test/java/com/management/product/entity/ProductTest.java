@@ -11,23 +11,19 @@ public class ProductTest extends ModelTest {
 
     @Test
     public void toStringTest() throws Exception {
-        Product product =
-                new Product("testTitle", "testManufactured", "testDescript", 123456789);
+        Product product = new Product("testTitle", "testManufactured", "testDescript", 123456789);
         String productString = product.toString();
         assertTrue(productString.contains("testTitle")
-                        && productString.contains("testManufactured")
-                        && productString.contains("testDescript")
-                        && productString.contains("123456789"));
+                && productString.contains("testManufactured")
+                && productString.contains("testDescript")
+                && productString.contains("123456789"));
     }
 
     @Test
     public void equals() throws Exception {
-        Product product =
-                new Product("testTitle", "testManufactured", "testDescript", 123456789);
-        Product product1 =
-                new Product("testTitle", "testManufactured", "testDescript", 123456789);
-        Product product2 =
-                new Product("testTitle", "testManufactured", "testDescript", 123456789);
+        Product product = new Product("testTitle", "testManufactured", "testDescript", 123456789);
+        Product product1 = new Product("testTitle", "testManufactured", "testDescript", 123456789);
+        Product product2 = new Product("testTitle", "testManufactured", "testDescript", 123456789);
         assertTrue(product.equals(product));
         assertTrue(product.equals(product1));
         assertTrue(product1.equals(product));

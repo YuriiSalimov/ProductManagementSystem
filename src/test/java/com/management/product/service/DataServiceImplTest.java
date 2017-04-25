@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -17,7 +16,7 @@ import java.util.HashSet;
  */
 public abstract class DataServiceImplTest<T extends Model> {
 
-    protected DataService<T> dataService;
+    private DataService<T> dataService;
 
     @Before
     public void initialize() {

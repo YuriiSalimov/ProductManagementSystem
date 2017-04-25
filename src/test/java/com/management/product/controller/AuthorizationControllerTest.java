@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
  * @version 1.0
  */
 public class AuthorizationControllerTest {
+
     private AuthorizationController authorizationController;
     private HttpServletRequest request;
     private HttpServletResponse response;

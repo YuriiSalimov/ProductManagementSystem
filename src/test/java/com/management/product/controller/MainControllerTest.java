@@ -24,9 +24,7 @@ import static org.junit.Assert.*;
 public class MainControllerTest {
 
     private ProductService productService;
-
     private UserService userService;
-
     private MainController mainController;
 
     public MainControllerTest() {
@@ -35,7 +33,9 @@ public class MainControllerTest {
         this.mainController = new MainController(productService, userService);
         Mockito.when(productService.getAll()).thenReturn(getProductCollection());
         Mockito.when(userService.getAll()).thenReturn(getUserCollection());
-        Mockito.when(productService.get(1L)).thenReturn(new Product("Test Product 1", "Test Manufacturer 1", "Test Description 1", 100));
+        Mockito.when(productService.get(1L)).thenReturn(
+                new Product("Test Product 1", "Test Manufacturer 1", "Test Description 1", 100)
+        );
 
     }
 
@@ -45,7 +45,7 @@ public class MainControllerTest {
         ModelAndView modelAndView = mainController.getIndexPage();
         Map<String, Object> models = modelAndView.getModel();
 
-        assertEquals((Collection<Product>) models.get("products"), productService.getAll());
+        assertEquals(models.get("products"), productService.getAll());
         assertFalse((Boolean) models.get("is_admin"));
 
         Mockito.when(userService.isAuthenticatedAdmin()).thenReturn(true);
@@ -63,7 +63,7 @@ public class MainControllerTest {
         ModelAndView modelAndView = mainController.getUsersPage();
         Map<String, Object> models = modelAndView.getModel();
 
-        assertEquals((Collection<User>) models.get("users"), getUserCollection());
+        assertEquals(models.get("users"), getUserCollection());
         assertFalse((Boolean) models.get("is_admin"));
 
         Mockito.when(userService.isAuthenticatedAdmin()).thenReturn(true);
@@ -80,7 +80,7 @@ public class MainControllerTest {
         ModelAndView modelAndView = mainController.getProductPage(1L);
         Map<String, Object> models = modelAndView.getModel();
 
-        assertEquals((Product) models.get("product"), productService.get(1L));
+        assertEquals(models.get("product"), productService.get(1L));
         assertFalse((Boolean) models.get("is_admin"));
 
         Mockito.when(userService.isAuthenticatedAdmin()).thenReturn(true);
@@ -91,14 +91,15 @@ public class MainControllerTest {
         assertEquals(modelAndView.getViewName(), "product");
     }
 
-    private Collection<Product> getProductCollection(){
+    private Collection<Product> getProductCollection() {
         Collection<Product> products = new HashSet<>();
         products.add(new Product("Test Product 1", "Test Manufacturer 1", "Test Description 1", 100));
         products.add(new Product("Test Product 2", "Test Manufacturer 2", "Test Description 2", 200));
         products.add(new Product("Test Product 3", "Test Manufacturer 3", "Test Description 3", 300));
         return products;
     }
-    private Collection<User> getUserCollection(){
+
+    private Collection<User> getUserCollection() {
         Collection<User> users = new HashSet<>();
         users.add(new User("Test User 1", "Test Password 1", UserRole.USER));
         users.add(new User("Test User 2", "Test Password 2", UserRole.ADMIN));
