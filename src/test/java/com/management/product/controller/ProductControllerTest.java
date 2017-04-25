@@ -77,6 +77,12 @@ public class ProductControllerTest {
         Mockito.verify(productService).remove(1L);
     }
 
+    @Test
+    public void deleteAllProductsTest() {
+        assertEquals(productController.deleteAllProducts(), "redirect:/home");
+        Mockito.verify(productService).removeAll();
+    }
+
     private Product getProduct() {
         Product product = new Product("Test Product 1", "Test Manufacturer 1", "Test Description 1", 100);
         product.setId(1L);
