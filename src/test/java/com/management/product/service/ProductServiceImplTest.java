@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 
@@ -25,32 +25,32 @@ public class ProductServiceImplTest extends DataServiceImplTest<Product> {
     /**
      * An instance of {@link ProductRepository}
      */
-    ProductRepository repository;
+    private ProductRepository repository;
 
     /**
      * An instance of {@link Product}
      */
-    Product product1;
+    private Product product1;
 
     /**
      * An instance of {@link Product}
      */
-    Product product2;
+    private Product product2;
 
     /**
      * An instance of {@link ProductServiceImpl}
      */
-    ProductServiceImpl productService;
+    private ProductServiceImpl productService;
 
     public ProductServiceImplTest() {
         this.product1 = new Product("first product", "Dell", "first product", 100);
-        this.product1.setId(1l);
+        this.product1.setId(1L);
         this.product2 = new Product("second product", "Apple", "second product", 200);
-        this.product2.setId(2l);
+        this.product2.setId(2L);
         this.repository = mock(ProductRepository.class);
         when(repository.findOne(product1.getId())).thenReturn(product1);
         when(repository.findOne(product2.getId())).thenReturn(product2);
-        when(repository.findOne(-100l)).thenReturn(null);
+        when(repository.findOne(-100L)).thenReturn(null);
         when(repository.save(product1)).thenReturn(product1);
         when(repository.save(product2)).thenReturn(product2);
         this.productService = new ProductServiceImpl(repository);
@@ -86,7 +86,7 @@ public class ProductServiceImplTest extends DataServiceImplTest<Product> {
     @Test(expected = IllegalArgumentException.class)
     public void removeTest() throws Exception {
         productService.remove(99999);
-        verify(repository).delete(99999l);
+        verify(repository).delete(99999L);
         Product productToRemove = new Product("productToRemove", 1452);
         productService.remove(productToRemove);
         verify(repository).delete(productToRemove);
@@ -106,15 +106,15 @@ public class ProductServiceImplTest extends DataServiceImplTest<Product> {
     @Override
     @Test(expected = IllegalArgumentException.class)
     public void existTest() throws Exception {
-        when(repository.exists(753l)).thenReturn(true);
+        when(repository.exists(753L)).thenReturn(true);
         assertTrue(productService.exist(753));
-        verify(repository).exists(753l);
+        verify(repository).exists(753L);
         Product product = new Product("for test exist", 159);
         product.setId(88888);
-        when(repository.exists(88888l)).thenReturn(true);
+        when(repository.exists(88888L)).thenReturn(true);
         assertTrue(productService.exist(product));
-        verify(repository).exists(88888l);
-        dataService.exist(null);
+        verify(repository).exists(88888L);
+        productService.exist(null);
     }
 
     @Test(expected = NullPointerException.class)

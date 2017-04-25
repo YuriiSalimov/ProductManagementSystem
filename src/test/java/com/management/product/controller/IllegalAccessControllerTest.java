@@ -3,7 +3,6 @@ package com.management.product.controller;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Class for testing of {@link IllegalAccessController}
@@ -12,6 +11,7 @@ import static org.junit.Assert.assertTrue;
  * @version 1.0
  */
 public class IllegalAccessControllerTest {
+
     private IllegalAccessController illegalAccessController;
 
     public IllegalAccessControllerTest() {
@@ -19,14 +19,14 @@ public class IllegalAccessControllerTest {
     }
 
     @Test
-    public void getIllegalAccessExceptionTest(){
-        IllegalAccessException exception = new IllegalAccessException("The user does not have rights to access the request");
-
-        try{
+    public void getIllegalAccessExceptionTest() {
+        IllegalAccessException exception = new IllegalAccessException(
+                "The user does not have rights to access the request"
+        );
+        try {
             illegalAccessController.getIllegalAccessException();
-        }
-        catch (IllegalAccessException e){
-            assertTrue(e.getMessage().equals(exception.getMessage()));
+        } catch (IllegalAccessException e) {
+            assertEquals(e.getMessage(), exception.getMessage());
         }
     }
 }
