@@ -15,44 +15,44 @@ public class UserTest {
 
     @Test
     public void toStringTest() throws Exception {
-    User testUser = new User("name","pass", UserRole.ADMIN);
+        User testUser = new User("name", "pass", UserRole.ADMIN);
         String toString = testUser.toString();
-        assertTrue(toString.contains("name")&&
-                    toString.contains("pass")&&
-                    toString.contains("ADMIN"));
+        assertTrue(toString.contains("name") &&
+                toString.contains("pass") &&
+                toString.contains("ADMIN"));
     }
 
     @Test
     public void equals() throws Exception {
-        User testUser1 = new User("name","pass", UserRole.ADMIN);
-        User testUser2 = new User("name","pass", UserRole.ADMIN);
+        User testUser1 = new User("name", "pass", UserRole.ADMIN);
+        User testUser2 = new User("name", "pass", UserRole.ADMIN);
         assertEquals(testUser1, testUser2);
         testUser1.setUsername("newName");
-        assertNotEquals(testUser1,testUser2);
+        assertNotEquals(testUser1, testUser2);
         testUser2.setUsername("newName");
-        assertEquals(testUser1,testUser2);
+        assertEquals(testUser1, testUser2);
         testUser1.setPassword("newPass");
-        assertNotEquals(testUser1,testUser2);
+        assertNotEquals(testUser1, testUser2);
         testUser2.setPassword("newPass");
-        assertEquals(testUser1,testUser2);
+        assertEquals(testUser1, testUser2);
         testUser1.setRole(UserRole.USER);
-        assertNotEquals(testUser1,testUser2);
-        assertNotEquals(testUser1,null);
-        assertNotEquals(testUser1,new Integer(5));
+        assertNotEquals(testUser1, testUser2);
+        assertNotEquals(testUser1, null);
+        assertNotEquals(testUser1, new Integer(5));
     }
 
     @Test
     public void hashCodeTest() throws Exception {
-        User testUser1 = new User("name","pass", UserRole.ADMIN);
-        User testUser2 = new User("name","pass", UserRole.ADMIN);
-        assertTrue(testUser1.hashCode()==testUser2.hashCode());
+        User testUser1 = new User("name", "pass", UserRole.ADMIN);
+        User testUser2 = new User("name", "pass", UserRole.ADMIN);
+        assertTrue(testUser1.hashCode() == testUser2.hashCode());
         testUser1.setPassword("pass1");
-        assertFalse(testUser1.hashCode()==testUser2.hashCode());
+        assertFalse(testUser1.hashCode() == testUser2.hashCode());
     }
 
     @Test
     public void isAccountNonExpired() throws Exception {
-        User testUser = new User("name","pass");
+        User testUser = new User("name", "pass");
         testUser.setLocked(false);
         assertTrue(testUser.isAccountNonExpired());
         testUser.setLocked(true);
@@ -88,43 +88,43 @@ public class UserTest {
 
     @Test
     public void getAuthorities() throws Exception {
-        User testUser = new User("name","pass", UserRole.USER);
+        User testUser = new User("name", "pass", UserRole.USER);
         Collection<GrantedAuthority> grantedAuthorities = testUser.getAuthorities();
         assertNotNull(grantedAuthorities);
-        assertTrue(grantedAuthorities.size()==1);
+        assertTrue(grantedAuthorities.size() == 1);
 
     }
 
     @Test
     public void getAndSetUsername() throws Exception {
         User testUser = new User();
-        assertEquals(testUser.getUsername(),"");
+        assertEquals(testUser.getUsername(), "");
         testUser.setUsername(null);
-        assertEquals(testUser.getUsername(),"");
+        assertEquals(testUser.getUsername(), "");
         testUser.setUsername("     ");
-        assertEquals(testUser.getUsername(),"");
+        assertEquals(testUser.getUsername(), "");
         testUser.setUsername("newName");
-        assertEquals(testUser.getUsername(),"newName");
+        assertEquals(testUser.getUsername(), "newName");
     }
 
     @Test
     public void getAndSetPassword() throws Exception {
         User testUser = new User();
-        assertEquals(testUser.getPassword(),"");
+        assertEquals(testUser.getPassword(), "");
         testUser.setPassword(null);
-        assertEquals(testUser.getPassword(),"");
+        assertEquals(testUser.getPassword(), "");
         testUser.setPassword("     ");
-        assertEquals(testUser.getPassword(),"");
+        assertEquals(testUser.getPassword(), "");
         testUser.setPassword("newPass");
-        assertEquals(testUser.getPassword(),"newPass");
+        assertEquals(testUser.getPassword(), "newPass");
     }
 
     @Test
     public void getAndSetRole() throws Exception {
         User testUser = new User();
-        assertEquals(testUser.getRole(),UserRole.USER);
+        assertEquals(testUser.getRole(), UserRole.USER);
         testUser.setRole(null);
-        assertEquals(testUser.getRole(),UserRole.USER);
+        assertEquals(testUser.getRole(), UserRole.USER);
         testUser.setRole(UserRole.ADMIN);
         assertTrue(testUser.getRole().equals(UserRole.ADMIN));
     }
