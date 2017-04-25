@@ -41,19 +41,7 @@ public class UserServiceImplTest extends DataServiceImplTest<User> {
         when(repository.save(user1)).thenReturn(user1);
         when(repository.save(user2)).thenReturn(user2);
     }
-
-//    @Test
-//    public void getByUsername() throws Exception {
-////        service.getByUsername("");
-//        User userTest = new User("UserTest","0", UserRole.ADMIN);
-//        User add = service.get(1L);
-//        System.out.println(add);
-//        System.out.println(service.getByUsername("UserTest"));
-//        assertEquals(add, service.getByUsername("UserTest"));
-//        assertNotNull(service.getByUsername("NotExist"));
-//        service.remove(add.getId());
-
-//    }
+    
 
     @Test(expected = IllegalArgumentException.class)
     public void getByUsernameBlank() throws Exception {
