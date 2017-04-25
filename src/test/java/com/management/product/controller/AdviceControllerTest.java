@@ -24,12 +24,10 @@ import static org.junit.Assert.assertEquals;
 public class AdviceControllerTest {
     private AdviceController adviceController;
     private HttpServletRequest request;
-    private HttpServletResponse response;
 
     public AdviceControllerTest() {
         this.adviceController = new AdviceController();
         this.request = Mockito.mock(HttpServletRequest.class);
-        this.response = Mockito.mock(HttpServletResponse.class);
     }
 
     @Test
