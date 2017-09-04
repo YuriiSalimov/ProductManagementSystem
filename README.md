@@ -1,3 +1,5 @@
+# [![GoIt Java](goit-logo.jpg)](http://java.new.goit.ua)
+
 <h1>Домашнее задание #4</h1>
 
 Необходимо разработать CRUD приложение, с использованием Spring MVC и Spring Security.
